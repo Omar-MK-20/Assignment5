@@ -96,6 +96,13 @@ WHERE
 
 SELECT @Milk_id;
 
+UPDATE products
+SET
+    stock_quantity = stock_quantity - 2
+WHERE
+    product_id = @Milk_id
+    AND stock_quantity >= 2;
+
 INSERT INTO
     sales (
         product_id,
@@ -103,13 +110,6 @@ INSERT INTO
         sale_date
     )
 VALUES (@Milk_id, 2, '2025-05-20');
-
-UPDATE products
-SET
-    stock_quantity = stock_quantity - 2
-WHERE
-    product_id = @Milk_id
-    AND stock_quantity >= 2;
 
 -- 7- Update the price of 'Bread' to 25.00.
 UPDATE products SET price = 25.00 WHERE product_name = 'Bread';
@@ -120,11 +120,33 @@ DELETE FROM products WHERE product_name = 'Eggs';
 -- 9- Retrieve the total quantity sold for each product.
 SELECT products.product_name, SUM(sales.quantity_sold)
 FROM products
-    JOIN sales
-WHERE
-    products.product_id = sales.product_id
+    JOIN sales ON products.product_id = sales.product_id
 GROUP BY
     product_name;
 
 -- 10-Get the product with the highest stock.
-SELECT products.product_name FROM products ORDER BY
+SELECT products.product_name
+FROM products
+ORDER BY stock_quantity DESC
+LIMIT 1;
+
+-- 11-Find suppliers with names starting with 'F'.
+SELECT * FROM suppliers WHERE supplier_name LIKE 'F%';
+
+-- 12-Show all products that have never been sold.
+SELECT *
+from products
+    LEFT JOIN sales ON products.product_id = sales.product_id
+WHERE
+    sales.product_id is NULL;
+
+-- 13-Get all sales along with product name and sale date.
+SELECT products.product_name, sales.sale_date
+FROM sales
+    LEFT JOIN products ON sales.product_id = products.product_id;
+
+-- 14-Create a user “store_manager” and give them SELECT, INSERT, and UPDATE permissions on all tables.
+
+-- 15-Revoke UPDATE permission from “store_manager”.
+
+-- 16-Grant DELETE permission to “store_manager” only on the Sales table.
