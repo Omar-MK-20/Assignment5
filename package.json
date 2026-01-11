@@ -1,0 +1,23 @@
+{
+  "name": "assignment5",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Omar-MK-20/Assignment5#readme",
+  "bugs": {
+    "url": "https://github.com/Omar-MK-20/Assignment5/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omar-MK-20/Assignment5.git"
+  },
+  "license": "ISC",
+  "author": "Omar-MK-20",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "node --watch main.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.16.0"
+  }
+}
