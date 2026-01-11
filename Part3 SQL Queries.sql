@@ -4,6 +4,9 @@
 CREATE DATABASE Assignment5;
 
 -- DROP DATABASE assignment5;
+DROP TABLE sales;
+DROP TABLE products;
+DROP TABLE suppliers;
 
 USE assignment5;
 
