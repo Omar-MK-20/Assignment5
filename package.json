@@ -12,7 +12,7 @@
   },
   "license": "ISC",
   "author": "Omar-MK-20",
-  "type": "commonjs",
+  "type": "module",
   "main": "main.js",
   "scripts": {
     "start": "node --watch main.js"
