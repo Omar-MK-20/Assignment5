@@ -1,4 +1,4 @@
--- Active: 1766933187103@@127.0.0.1@3306@assignment5
+-- Active: 1767116230824@@127.0.0.1@3306@assignment5
 
 -- Creating database
 CREATE DATABASE Assignment5;
@@ -57,7 +57,8 @@ VALUES ('FreshFoods', '01001234567');
 SELECT suppliers.supplier_id INTO @FreshFoods_id
 FROM suppliers
 WHERE
-    supplier_name = 'FreshFoods';
+    supplier_name = 'FreshFoods'
+LIMIT 1;
 
 SELECT @FreshFoods_id;
 
@@ -95,7 +96,8 @@ VALUES
 SELECT products.product_id INTO @Milk_id
 FROM products
 WHERE
-    product_name = 'Milk';
+    product_name = 'Milk'
+LIMIT 1;
 
 SELECT @Milk_id;
 
@@ -149,7 +151,21 @@ FROM sales
     LEFT JOIN products ON sales.product_id = products.product_id;
 
 -- 14-Create a user “store_manager” and give them SELECT, INSERT, and UPDATE permissions on all tables.
+CREATE USER 'store_manager'@'localhost' IDENTIFIED BY 'store123';
+
+GRANT SELECT, INSERT, UPDATE
+ON assignment5.*
+TO 'store_manager'@'localhost';
+
 
 -- 15-Revoke UPDATE permission from “store_manager”.
+REVOKE UPDATE
+ON assignment5.*
+FROM 'store_manager'@'localhost';
+
+
 
 -- 16-Grant DELETE permission to “store_manager” only on the Sales table.
+GRANT DELETE
+ON assignment5.sales
+TO 'store_manager'@'localhost';
