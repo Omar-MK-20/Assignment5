@@ -13,11 +13,12 @@
   "license": "ISC",
   "author": "Omar-MK-20",
   "type": "module",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
-    "start": "node --watch main.js"
+    "start": "node --watch ./src/main.js"
   },
   "dependencies": {
+    "express": "^5.2.1",
     "mysql2": "^3.16.0"
   }
 }
